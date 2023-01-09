@@ -71,8 +71,9 @@ const callGenerateEndpoint = async () => {
     if(!response.ok) {
       // let smsDebug = `Request to OpenAI failed. Inputs: ${JSON.stringify({inputs})}`;
       // await callTwilioDebug(smsDebug);
-      alert(response.statusText);
-      throw new Error(response.statusText);
+      console.log(`Error with OpenAI. response: ${response}`)
+      alert(`Error. ${response.error}`);
+      throw new Error(response.error);
     }
     return response.json();
   })
