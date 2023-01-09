@@ -116,7 +116,7 @@ const callGenerateEndpoint = async () => {
         </div>
         <div className="prompt-container">
           <input
-            placeholder="your name"
+            placeholder="Your name"
             className="prompt-box"
             name="name1"
             value={inputs.name1}
@@ -208,7 +208,7 @@ const callGenerateEndpoint = async () => {
             <option value="Female">Female</option>
             </select>
           <input
-            placeholder="their name"
+            placeholder="Their name"
             className="prompt-box"
             name="name2"
             value={inputs.name2}
