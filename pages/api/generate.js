@@ -10,6 +10,9 @@ const basePromptPrefix = "Writing in the voice of a dating coach, suggest three 
 const generateAction = async (req, res) => {
   console.log(`calling generateAction function...`);
 
+  // Use this to debug the request body
+  // res.status(500).json({ error: `An error occurred while generating the output` });
+
   try {
     const inputs = req.body.inputs;
 
@@ -50,7 +53,6 @@ const generateAction = async (req, res) => {
     });
 
     const basePromptOutput = baseCompletion.data.choices.pop();
-
     res.status(200).json({ output: basePromptOutput });
   } catch (error) {
     console.log(`Error running openAI completion: ${error}`);
