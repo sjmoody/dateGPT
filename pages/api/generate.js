@@ -8,7 +8,7 @@ const openai = new OpenAIApi(configuration);
 
 const basePromptPrefix = "Writing in the voice of a dating coach, suggest three dates for a couple, based on their personality types and location. Describe what each person would enjoy about the date, based on their personality types. Use specific details.  \n";
 const generateAction = async (req, res) => {
-  console.log("calling generateAction function");
+  console.log(`calling generateAction function...`);
 
   try {
     const inputs = req.body.inputs;
@@ -53,7 +53,7 @@ const generateAction = async (req, res) => {
 
     res.status(200).json({ output: basePromptOutput });
   } catch (error) {
-    console.log(error);
+    console.log(`Error running openAI completion: ${error}`);
     res.status(500).json({ error: `An error occurred while generating the output` });
   }
 
