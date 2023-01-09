@@ -85,7 +85,7 @@ const callGenerateEndpoint = async () => {
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>Tired of the Same Old Dates? Let GPT Help!</h1>
+            <h1>Tired of the Same Old Dates? Let AI Help!</h1>
           </div>
           <div className="header-subtitle">
             <h2>Get Creative Date Ideas Tailored to You</h2>
