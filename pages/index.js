@@ -21,9 +21,7 @@ const Home = () => {
 
 const [apiOutput, setApiOutput] = useState('')
 const [isGenerating, setIsGenerating] = useState(false)
-// const [smsBody, setSmsBody] = useState('')
 
-// Write a function calLTwilioEndpoint that will call the Twilio endpoint with the SMS body and phone number
 const callTwilioEndpoint = async (smsBody) => {
   console.log("Calling Twilio...")
   console.log(`Expected body for POST call: ${JSON.stringify( { smsBody: smsBody, smsTo: inputs.phoneNumber })}`)
