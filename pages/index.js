@@ -69,18 +69,26 @@ const callGenerateEndpoint = async () => {
   });
 
   const data = await response.json();
-  const { output } = data;
+
+    if(data.error) {
+      alert(data.error);
+      let smsDebug = `Request received from ${inputs.phoneNumber}. Error: ${data.error}`;
+      await callTwilioDebug(smsDebug);
+    } else {
+      const { output } = data;
+      let smsb = `Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
+      setApiOutput(smsb);
+
+      let smsDebug = `Request received from ${inputs.phoneNumber}. Response sent to user: \n Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
+      // console.log(`to send for debugging: ${smsDebug}`);
+
+      await callTwilioDebug(smsDebug);
+      // console.log("Finished call to Twilio endpoint.")
+
+    }
   // console.log("OpenAI replied...", output.text)
 
 
-  let smsb = `Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
-  setApiOutput(smsb);
-
-  let smsDebug = `Request received from ${inputs.phoneNumber}. Response sent to user: \n Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
-  // console.log(`to send for debugging: ${smsDebug}`);
-
-  await callTwilioDebug(smsDebug);
-  // console.log("Finished call to Twilio endpoint.")
 
 
   setIsGenerating(false);
