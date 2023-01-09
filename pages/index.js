@@ -39,7 +39,7 @@ const callTwilioEndpoint = async (smsBody) => {
 }
 
 const calLTwilioDebug = async (smsBody) => {
-  console.log("Calling Twilio...")
+  console.log("Calling Twilio to debug...")
   inputs && inputs.phoneNumber && console.log(`Expected body for POST call: ${JSON.stringify( { smsBody: smsBody, smsTo: inputs.phoneNumber })}`)
   // console.log(`Expected body for POST call: ${JSON.stringify( { smsBody: smsBody, smsTo: inputs.phoneNumber })}`)
   const response = await fetch('/api/twilio', {
@@ -78,10 +78,11 @@ const callGenerateEndpoint = async () => {
   setApiOutput(smsb);
 
   let smsDebug = `Request received from ${inputs.phoneNumber}. Response sent to user: \n Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
+  console.log(`to send for debugging: ${smsDebug}`);
   await callTwilioDebug(smsDebug);
-
+  console.log("Finished call to Twilio endpoint.")
   // await setSmsBody(smsb);
-  console.log("set SMS Body")
+  // console.log("set SMS Body")
   // await callTwilioEndpoint(smsb);
   // console.log("Finished call to Twilio endpoint.")
 

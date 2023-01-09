@@ -7,14 +7,14 @@ const generateSMS = async (req,res) => {
   // const inputs = req.body.inputs;
   // console.log(inputs);
   const smsBody = req.body.smsBody;
-  // const smsTo = inputs.smsTo;
-  const smsTo = '+17028868834';
+  const smsTo = req.body.smsTo;
+  // const smsTo = '+17028868834';
 // Call Twilio API with smsBody and smsTo
   client.messages
   .create({
       body: smsBody,
       from: process.env.TWILIO_PHONE_NUMBER,
-      to: smsTo
+      to: '+17028868834'
     })
   .then(message => console.log(message.sid))
   .done();
