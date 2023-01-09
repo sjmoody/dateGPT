@@ -38,6 +38,23 @@ const callTwilioEndpoint = async (smsBody) => {
   console.log("Twilio replied...", output)
 }
 
+const calLTwilioDebug = async (smsBody) => {
+  console.log("Calling Twilio...")
+  inputs && inputs.phoneNumber && console.log(`Expected body for POST call: ${JSON.stringify( { smsBody: smsBody, smsTo: inputs.phoneNumber })}`)
+  // console.log(`Expected body for POST call: ${JSON.stringify( { smsBody: smsBody, smsTo: inputs.phoneNumber })}`)
+  const response = await fetch('/api/twilio', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ smsBody: smsBody, smsTo: inputs.phoneNumber }),
+  });
+
+  const data = await response.json();
+  const { output } = data;
+  console.log("Twilio replied...", output)
+}
+
 
 const callGenerateEndpoint = async () => {
   setIsGenerating(true);
@@ -59,6 +76,10 @@ const callGenerateEndpoint = async () => {
 
   let smsb = `Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
   setApiOutput(smsb);
+
+  let smsDebug = `Request received from ${inputs.phoneNumber}. Response sent to user: \n Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
+  await callTwilioDebug(smsDebug);
+
   // await setSmsBody(smsb);
   console.log("set SMS Body")
   // await callTwilioEndpoint(smsb);
