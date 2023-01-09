@@ -372,6 +372,12 @@ select {
     color: rgba(255, 255, 255, 0.5);
 }
 
+.output-content pre {
+    text-align: center;
+    white-space: pre-line;
+    color: rgba(255, 255, 255, 0.5);
+}
+
 @media (min-width: 810px) and (max-width: 1199px) {
     .container {
         max-width: 600px;
