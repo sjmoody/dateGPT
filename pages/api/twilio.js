@@ -9,16 +9,23 @@ const generateSMS = async (req,res) => {
   const smsBody = req.body.smsBody;
   const smsTo = req.body.smsTo;
   // const smsTo = '+17028868834';
-// Call Twilio API with smsBody and smsTo
-  client.messages
-  .create({
+
+  try {
+      // Call Twilio API with smsBody and smsTo
+    client.messages
+    .create({
       body: smsBody,
       from: process.env.TWILIO_PHONE_NUMBER,
       to: '+17028868834'
-    })
-  .then(message => console.log(message.sid))
-  .done();
-  res.status(200).json({ message: 'SMS sent' });
+      })
+    .then(message => console.log(message.sid))
+    .done();
+    res.status(200).json({ message: 'SMS sent' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+
 };
 
 export default generateSMS;
