@@ -23,8 +23,8 @@ const [apiOutput, setApiOutput] = useState('')
 const [isGenerating, setIsGenerating] = useState(false)
 
 const callTwilioEndpoint = async (smsBody) => {
-  console.log("Calling Twilio...")
-  console.log(`Expected body for POST call: ${JSON.stringify( { smsBody: smsBody, smsTo: inputs.phoneNumber })}`)
+  // console.log("Calling Twilio...")
+  // console.log(`Expected body for POST call: ${JSON.stringify( { smsBody: smsBody, smsTo: inputs.phoneNumber })}`)
   const response = await fetch('/api/twilio', {
     method: 'POST',
     headers: {
@@ -35,11 +35,11 @@ const callTwilioEndpoint = async (smsBody) => {
 
   const data = await response.json();
   const { output } = data;
-  console.log("Twilio replied...", output)
+  // console.log("Twilio replied...", output)
 }
 
 const callTwilioDebug = async (smsBody) => {
-  console.log("Calling Twilio to debug...")
+  // console.log("Calling Twilio to debug...")
   inputs && inputs.phoneNumber && console.log(`Expected body for POST call: ${JSON.stringify( { smsBody: smsBody, smsTo: inputs.phoneNumber })}`)
   const response = await fetch('/api/twilio', {
     method: 'POST',
@@ -51,15 +51,15 @@ const callTwilioDebug = async (smsBody) => {
 
   const data = await response.json();
   const { output } = data;
-  console.log("Twilio replied...", output)
+  // console.log("Twilio replied...", output)
 }
 
 
 const callGenerateEndpoint = async () => {
   setIsGenerating(true);
 
-  console.log("Calling OpenAI...")
-  console.log(`Inputs: ${inputs}`)
+  // console.log("Calling OpenAI...")
+  // console.log(`Inputs: ${inputs}`)
   const response = await fetch('/api/generate', {
     method: 'POST',
     headers: {
@@ -70,17 +70,17 @@ const callGenerateEndpoint = async () => {
 
   const data = await response.json();
   const { output } = data;
-  console.log("OpenAI replied...", output.text)
+  // console.log("OpenAI replied...", output.text)
 
 
   let smsb = `Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
   setApiOutput(smsb);
 
   let smsDebug = `Request received from ${inputs.phoneNumber}. Response sent to user: \n Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
-  console.log(`to send for debugging: ${smsDebug}`);
+  // console.log(`to send for debugging: ${smsDebug}`);
 
   await callTwilioDebug(smsDebug);
-  console.log("Finished call to Twilio endpoint.")
+  // console.log("Finished call to Twilio endpoint.")
 
 
   setIsGenerating(false);
@@ -89,7 +89,7 @@ const callGenerateEndpoint = async () => {
   const onUserChangedText = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    console.log(`Change made to ${name}. New value: ${value}`)
+
     setInputs({
       ...inputs,
       [name]: value
