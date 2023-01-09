@@ -310,7 +310,7 @@ const callGenerateEndpoint = async () => {
               </div>
             </div>
             <div className="output-content">
-              <p>{apiOutput}</p>
+              <span>{apiOutput}</span>
               </div>
             </div>
 
