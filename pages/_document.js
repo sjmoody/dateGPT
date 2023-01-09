@@ -4,12 +4,12 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <meta property="og:title" content="DateGPT" key="title"/>
+        <meta property="og:title" content="GPTCupid" key="title"/>
         <meta property="og:description" content="Get Date ideas based on your personality types" key="description"/>
-        <meta
+        {/* <meta
           property="og:image"
           content="https://cdn.buildspace.so/courses/gpt3-writer/project-og.jpg"
-        />
+        /> */}
         <meta name="twitter:card" content="summary_large_image"></meta>
       </Head>
       <body>
