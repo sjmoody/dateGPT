@@ -60,35 +60,40 @@ const callGenerateEndpoint = async () => {
 
   // console.log("Calling OpenAI...")
   // console.log(`Inputs: ${inputs}`)
-  const response = await fetch('/api/generate', {
+  fetch('/api/generate', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ inputs }),
-  });
-
-  const data = await response.json();
-    if(data.error) {
-      alert(data.error);
-      // let smsDebug = `Request received from ${inputs.phoneNumber}. Error: ${data.error}`;
-      let smsDebug = `Request to OpenAI failed. Inputs: ${JSON.stringify({inputs})}`;
-      await callTwilioDebug(smsDebug);
-    } else {
-      const { output } = data;
-      if (output && output.text) {
-        let smsb = `Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
-      setApiOutput(smsb);
+  })
+  .then((response) => {
+    if(!response.ok) {
+      // let smsDebug = `Request to OpenAI failed. Inputs: ${JSON.stringify({inputs})}`;
+      // await callTwilioDebug(smsDebug);
+      alert(response.statusText);
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    // Success
+    const { output } = data;
+    if(output && output.text) {
+      console.log(`Output: ${output.text}`)
+      let smsb = `Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
       let smsDebug = `Request received from ${inputs.phoneNumber}. Response sent to user: \n Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
-      // console.log(`to send for debugging: ${smsDebug}`);
+      callTwilioDebug(smsDebug);
 
-      await callTwilioDebug(smsDebug);
-      // console.log("Finished call to Twilio endpoint.")
-      }
+      setApiOutput(output.text)
+
+      // callTwilioEndpoint(smsb)
 
     }
-  // console.log("OpenAI replied...", output.text)
-  setIsGenerating(false);
+  })
+  .then(() => {
+    setIsGenerating(false);
+  });
 }
 
   const onUserChangedText = (event) => {

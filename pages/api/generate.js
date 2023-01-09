@@ -56,7 +56,7 @@ const generateAction = async (req, res) => {
     res.status(200).json({ output: basePromptOutput });
   } catch (error) {
     console.log(`Error running openAI completion: ${error}`);
-    res.status(500).json({ error: `An error occurred while generating the output` });
+    res.status(500).json({ error: error.message });
   }
 
 };
