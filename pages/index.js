@@ -57,13 +57,14 @@ const callGenerateEndpoint = async () => {
   const data = await response.json();
   const { output } = data;
   console.log("OpenAI replied...", output.text)
-  setApiOutput(`The date ideas will be sent to your phone number: ${inputs.phoneNumber}`)
+  // setApiOutput(`The date ideas will be sent to your phone number: ${inputs.phoneNumber}`)
 
   let smsb = `Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
+  setApiOutput(smsb);
   // await setSmsBody(smsb);
   console.log("set SMS Body")
-  await callTwilioEndpoint(smsb);
-  console.log("Finished call to Twilio endpoint.")
+  // await callTwilioEndpoint(smsb);
+  // console.log("Finished call to Twilio endpoint.")
 
   setIsGenerating(false);
 }
