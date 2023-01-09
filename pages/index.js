@@ -131,6 +131,7 @@ const callGenerateEndpoint = async () => {
                     placeholder="Your name"
                     className="prompt-box"
                     name="name1"
+                    maxlength="25"
                     value={inputs.name1}
                     onChange={onUserChangedText}
                     />
@@ -176,6 +177,7 @@ const callGenerateEndpoint = async () => {
                     className="prompt-box"
                     name="name2"
                     value={inputs.name2}
+                    maxlength="25"
                     onChange={onUserChangedText}
                     />
                   <select
@@ -219,6 +221,7 @@ const callGenerateEndpoint = async () => {
                     placeholder="City"
                     className="prompt-box"
                     name="city"
+                    maxlength="25"
                     value={inputs.city}
                     onChange={onUserChangedText}
                     />
@@ -226,6 +229,7 @@ const callGenerateEndpoint = async () => {
                     placeholder="Day of the Week"
                     className="prompt-box"
                     name="dayOfWeek"
+                    maxlength="10"
                     value={inputs.dayOfWeek}
                     onChange={onUserChangedText}
                     />
@@ -233,6 +237,7 @@ const callGenerateEndpoint = async () => {
                     placeholder="What vibe do you want?"
                     className="prompt-box"
                     name="dateVibes"
+                    maxlength="20"
                     value={inputs.dateVibes}
                     onChange={onUserChangedText}
                     />
@@ -240,6 +245,7 @@ const callGenerateEndpoint = async () => {
                     placeholder="Use the format +13054192786"
                     className="prompt-box"
                     name="phoneNumber"
+                    maxlength="16"
                     value={inputs.phoneNumber}
                     onChange={onUserChangedText}
                     />
@@ -274,7 +280,7 @@ const callGenerateEndpoint = async () => {
                           onClick={() => {
                             console.log(`tweeting. Text: ${apiOutput}`)
                             const tweetText=`AI just gave me a date idea! ${apiOutput}`
-                            const tweetShort = tweetText.substring(0, 215)
+                            const tweetShort = tweetText.substring(0, 214)
                             const tweetPayload = (`${tweetShort}... \nGet your own ideas at www.gptcupid.com. c/o @sjmoody`)
                             const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetPayload)}`;
                             window.open(tweetUrl);
