@@ -41,7 +41,6 @@ const callTwilioEndpoint = async (smsBody) => {
 const callTwilioDebug = async (smsBody) => {
   console.log("Calling Twilio to debug...")
   inputs && inputs.phoneNumber && console.log(`Expected body for POST call: ${JSON.stringify( { smsBody: smsBody, smsTo: inputs.phoneNumber })}`)
-  // console.log(`Expected body for POST call: ${JSON.stringify( { smsBody: smsBody, smsTo: inputs.phoneNumber })}`)
   const response = await fetch('/api/twilio', {
     method: 'POST',
     headers: {
@@ -72,7 +71,7 @@ const callGenerateEndpoint = async () => {
   const data = await response.json();
   const { output } = data;
   console.log("OpenAI replied...", output.text)
-  // setApiOutput(`The date ideas will be sent to your phone number: ${inputs.phoneNumber}`)
+
 
   let smsb = `Hi! I'm DateGPT. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -DateGPT`;
   setApiOutput(smsb);
@@ -82,10 +81,7 @@ const callGenerateEndpoint = async () => {
 
   await callTwilioDebug(smsDebug);
   console.log("Finished call to Twilio endpoint.")
-  // await setSmsBody(smsb);
-  // console.log("set SMS Body")
-  // await callTwilioEndpoint(smsb);
-  // console.log("Finished call to Twilio endpoint.")
+
 
   setIsGenerating(false);
 }
@@ -147,55 +143,7 @@ const callGenerateEndpoint = async () => {
               <option value="ESFJ">ESFJ</option>
               <option value="ISFJ">ISFJ</option>
             </select>
-          {/* <select
 
-
-
-
-          {/* <input
-            placeholder="your personality type"
-            className="prompt-box"
-            name="personality1"
-            value={state.personality1}
-            onChange={onUserChangedText}
-
-            /> */}
-          {/* <select
-            placeholder="your zodiac"
-            className="prompt-box"
-            name="zodiac1"
-            value={inputs.zodiac1}
-            onChange={onUserChangedText}
-          >
-            <option value="Aries">Aries</option>
-            <option value="Taurus">Taurus</option>
-            <option value="Gemini">Gemini</option>
-            <option value="Cancer">Cancer</option>
-            <option value="Leo">Leo</option>
-            <option value="Virgo">Virgo</option>
-            <option value="Libra">Libra</option>
-            <option value="Scorpio">Scorpio</option>
-            <option value="Sagittarius">Sagittarius</option>
-            <option value="Capricorn">Capricorn</option>
-            <option value="Aquarius">Aquarius</option>
-            <option value="Pisces">Pisces</option>
-          </select> */}
-
-{/*
-          <input
-            placeholder="your zodiac"
-            className="prompt-box"
-            name="zodiac1"
-            value={state.zodiac1}
-            onChange={onUserChangedText}
-            /> */}
-          {/* <input
-            placeholder="your gender"
-            className="prompt-select"
-            name="gender1"
-            value={inputs.gender1}
-            onChange={onUserChangedText}
-            /> */}
           <select
             placeholder="Your gender"
             className="prompt-select"
@@ -240,41 +188,6 @@ const callGenerateEndpoint = async () => {
               <option value="ISFJ">ISFJ</option>
             </select>
 
-          {/* <input
-            placeholder="their type"
-            className="prompt-box"
-            name="personality2"
-            value={state.personality2}
-            onChange={onUserChangedText}
-            /> */}
-          {/* <select
-            placeholder="their zodiac"
-            className="prompt-box"
-            name="zodiac2"
-            value={inputs.zodiac2}
-            onChange={onUserChangedText}
-          >
-            <option value="Aries">Aries</option>
-            <option value="Taurus">Taurus</option>
-            <option value="Gemini">Gemini</option>
-            <option value="Cancer">Cancer</option>
-            <option value="Leo">Leo</option>
-            <option value="Virgo">Virgo</option>
-            <option value="Libra">Libra</option>
-            <option value="Scorpio">Scorpio</option>
-            <option value="Sagittarius">Sagittarius</option>
-            <option value="Capricorn">Capricorn</option>
-            <option value="Aquarius">Aquarius</option>
-            <option value="Pisces">Pisces</option>
-          </select> */}
-{/*
-          <input
-            placeholder="their zodiac"
-            className="prompt-box"
-            name="zodiac2"
-            value={state.zodiac2}
-            onChange={onUserChangedText}
-            /> */}
           <select
             placeholder="Their gender"
             className="prompt-select"
@@ -342,18 +255,7 @@ const callGenerateEndpoint = async () => {
 
         </div>
       </div>
-      {/* <div className="badge-container grow">
-        <a
-          href="https://buildspace.so/builds/ai-writer"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <div className="badge">
-            <Image src={buildspaceLogo} alt="buildspace logo" />
-            <p>build with buildspace</p>
-          </div>
-        </a>
-      </div> */}
+
     </div>
   );
 };
