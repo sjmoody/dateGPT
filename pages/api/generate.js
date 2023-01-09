@@ -8,6 +8,7 @@ const openai = new OpenAIApi(configuration);
 
 const basePromptPrefix = "Writing in the voice of a dating coach, suggest three dates for a couple, based on their personality types and location. Describe what each person would enjoy about the date, based on their personality types. Use specific details.  \n";
 const generateAction = async (req, res) => {
+  console.log("calling generateAction function");
   // Run first prompt
   const inputs = req.body.inputs;
 
