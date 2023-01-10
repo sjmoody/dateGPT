@@ -131,7 +131,7 @@ const callGenerateEndpoint = async () => {
                     placeholder="Your name"
                     className="prompt-box"
                     name="name1"
-                    maxlength="25"
+                    maxLength="25"
                     value={inputs.name1}
                     onChange={onUserChangedText}
                     />
@@ -177,7 +177,7 @@ const callGenerateEndpoint = async () => {
                     className="prompt-box"
                     name="name2"
                     value={inputs.name2}
-                    maxlength="25"
+                    maxLength="25"
                     onChange={onUserChangedText}
                     />
                   <select
@@ -221,7 +221,7 @@ const callGenerateEndpoint = async () => {
                     placeholder="City"
                     className="prompt-box"
                     name="city"
-                    maxlength="25"
+                    maxLength="25"
                     value={inputs.city}
                     onChange={onUserChangedText}
                     />
@@ -229,7 +229,7 @@ const callGenerateEndpoint = async () => {
                     placeholder="Day of the Week"
                     className="prompt-box"
                     name="dayOfWeek"
-                    maxlength="10"
+                    maxLength="10"
                     value={inputs.dayOfWeek}
                     onChange={onUserChangedText}
                     />
@@ -237,7 +237,7 @@ const callGenerateEndpoint = async () => {
                     placeholder="What vibe do you want?"
                     className="prompt-box"
                     name="dateVibes"
-                    maxlength="20"
+                    maxLength="20"
                     value={inputs.dateVibes}
                     onChange={onUserChangedText}
                     />
@@ -245,7 +245,7 @@ const callGenerateEndpoint = async () => {
                     placeholder="Use the format +13054192786"
                     className="prompt-box"
                     name="phoneNumber"
-                    maxlength="16"
+                    maxLength="16"
                     value={inputs.phoneNumber}
                     onChange={onUserChangedText}
                     />
@@ -277,6 +277,7 @@ const callGenerateEndpoint = async () => {
                       <div>
                         <button
                           id="tweet-button"
+                          className="tweet-button"
                           onClick={() => {
                             console.log(`tweeting. Text: ${apiOutput}`)
                             const tweetText=`AI just gave me a date idea! ${apiOutput}`
@@ -289,6 +290,29 @@ const callGenerateEndpoint = async () => {
                           >
                             Tweet this
                             </button>
+                          <button
+                            id="try-again-button"
+                            className="try-again-button"
+                            onClick={() => {
+                              setIsGenerating(false);
+                              setHasGenerated(false);
+                              setApiOutput(null);
+                              setInputs({
+                                name1: "",
+                                personality1: "",
+                                gender1: "",
+                                name2: "",
+                                personality2: "",
+                                gender2: "",
+                                city: "",
+                                dayOfWeek: "",
+                                dateVibes: "",
+                                phoneNumber: ""
+                              })
+                            }}
+                            >
+                              Try Again
+                          </button>
                       </div>
                     </div>
 

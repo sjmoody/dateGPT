@@ -184,6 +184,21 @@ select {
     width: 100%;
 }
 
+.try-again-button {
+    display: flex;
+    place-content: center;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 auto;
+    flex-flow: row nowrap;
+    gap: 12px;
+    height: min-content;
+    overflow: hidden;
+    padding: 0px;
+    position: relative;
+    width: 100%;
+}
+
 .key-stroke {
     outline: none;
     display: flex;
@@ -230,6 +245,44 @@ select {
     position: relative;
     text-decoration: none;
     width: min-content;
+    will-change: transform;
+    cursor: pointer;
+}
+
+.try-again-button {
+    place-content: flex-start;
+    align-items: flex-start;
+
+    border-radius: 100px;
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: column nowrap;
+    gap: 10px;
+    height: min-content;
+    overflow: hidden;
+    padding: 16px 24px;
+    position: relative;
+    text-decoration: none;
+    width: max-content;
+    will-change: transform;
+    cursor: pointer;
+
+}
+.tweet-button {
+    place-content: flex-start;
+    align-items: flex-start;
+    background-color: rgb(29, 161, 242);
+    border-radius: 100px;
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: column nowrap;
+    gap: 10px;
+    height: min-content;
+    overflow: hidden;
+    padding: 16px 24px;
+    position: relative;
+    text-decoration: none;
+    width: max-content;
     will-change: transform;
     cursor: pointer;
 }
@@ -435,6 +488,12 @@ select {
     }
 
     .prompt-buttons {
+        justify-content: center;
+    }
+    .tweet-button {
+        justify-content: center;
+    }
+    .try-again-button {
         justify-content: center;
     }
 
