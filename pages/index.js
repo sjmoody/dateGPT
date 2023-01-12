@@ -242,7 +242,7 @@ const callGenerateEndpoint = async () => {
                     onChange={onUserChangedText}
                     />
                   <input
-                    placeholder="+12345555555"
+                    placeholder="Your phone number"
                     className="prompt-box"
                     name="phoneNumber"
                     maxLength="16"
