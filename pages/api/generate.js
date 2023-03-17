@@ -44,11 +44,11 @@ const generateAction = async (req, res) => {
 
     const basePromptInputs = `${personDetails1} ${personDetails2} ${city} ${dayOfWeek} ${dateVibes} \n`
 
-    console.log(`API: ${basePromptPrefix}${basePromptInputs}`)
+    // console.log(`API: ${basePromptPrefix}${basePromptInputs}`)
 
 
     const testContent = "How can I distinguish between a good and a bad Malbec wine?";
-    console.log(`API: ${testContent}`)
+    console.log(`Sending content: ${testContent}`)
     // content: `${basePromptPrefix}${basePromptInputs}`,
 
 
@@ -71,33 +71,38 @@ const generateAction = async (req, res) => {
 
 
   catch (error) {
+
     console.log(`Error running GPT4 completion: ${error}`);
-    res.status(569).json({error});
+    console.log('API response:', error.response?.data);
+    res.status(569).json({ error });
+  }
+//   catch (error) {
+//     console.log(`Error running GPT4 completion: ${error}`);
+//     res.status(569).json({error});
+//     // try {
+//     //   const baseCompletion3 = await openai.createCompletion({
+//     //     // model: "gpt-3.5-turbo",
+//     //     messages: [
+//     //       {
+//     //         role: "user",
+//     //         content: `${basePromptPrefix}${basePromptInputs}`,
+//     //       },
+//     //     ],
+//     //     temperature: 0.70,
+//     //     max_tokens: 500,
 
-    // try {
-    //   const baseCompletion3 = await openai.createCompletion({
-    //     // model: "gpt-3.5-turbo",
-    //     messages: [
-    //       {
-    //         role: "user",
-    //         content: `${basePromptPrefix}${basePromptInputs}`,
-    //       },
-    //     ],
-    //     temperature: 0.70,
-    //     max_tokens: 500,
+//     //   });
 
-    //   });
+//     //   const basePromptOutput = baseCompletion3.data.choices.pop();
+//     //   res.status(200).json({ output: basePromptOutput });
 
-    //   const basePromptOutput = baseCompletion3.data.choices.pop();
-    //   res.status(200).json({ output: basePromptOutput });
+//     // }
+//     // catch (fallbacKError) {
+//     //   console.log("Reached final error catch");
+//     //   res.status(500).json({ error: fallbacKError.message });
+//     // }
 
-    // }
-    // catch (fallbacKError) {
-    //   console.log("Reached final error catch");
-    //   res.status(500).json({ error: fallbacKError.message });
-    // }
-
-};
+// };
 }
 
 export default generateAction;
