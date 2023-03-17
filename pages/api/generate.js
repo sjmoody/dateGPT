@@ -53,7 +53,9 @@ const generateAction = async (req, res) => {
 
     const baseChatcompletion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{role: "user", content: baseChatContent}],
+      messages: [{role: "user", content: testContent}],
+      max_tokens: 600,
+      temperature: 0.70,
     });
     const baseChatOutput = baseChatcompletion.data.choices[0].message;
     console.log(baseChatOutput);
