@@ -59,8 +59,8 @@ const callTwilioDebug = async (smsBody) => {
 const callGenerateEndpoint = async () => {
   setIsGenerating(true);
 
-  // console.log("Calling OpenAI...")
-  // console.log(`Inputs: ${inputs}`)
+  console.log("Calling OpenAI...")
+  console.log(`Inputs: ${inputs}`)
   fetch('/api/generate', {
     method: 'POST',
     headers: {
