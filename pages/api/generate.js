@@ -46,17 +46,18 @@ const generateAction = async (req, res) => {
 
     // console.log(`API: ${basePromptPrefix}${basePromptInputs}`)
 
-
+    const baseChatContent = `${basePromptPrefix}${basePromptInputs}`
     const testContent = "How can I distinguish between a good and a bad Malbec wine?";
-    console.log(`Sending content: ${testContent}`)
+    console.log(`Sending content: ${baseChatContent}`)
     // content: `${basePromptPrefix}${basePromptInputs}`,
 
     const baseChatcompletion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{role: "user", content: testContent}],
+      messages: [{role: "user", content: baseChatContent}],
     });
-    console.log(baseChatcompletion.data.choices[0].message);
     const baseChatOutput = baseChatcompletion.data.choices[0].message;
+    console.log(baseChatOutput);
+    // console.log(baseChatcompletion.data.choices[0].message);
     res.status(200).json({ output: baseChatOutput });
 
 
