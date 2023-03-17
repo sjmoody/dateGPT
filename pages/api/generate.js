@@ -47,7 +47,7 @@ const generateAction = async (req, res) => {
 
 
     const baseCompletion = await openai.createCompletion({
-      model: "gpt-4",
+      model: "gpt-3.5-turbo",
       prompt: `${basePromptPrefix}${basePromptInputs}`,
       temperature: 0.70,
       max_tokens: 500,
@@ -59,10 +59,10 @@ const generateAction = async (req, res) => {
 
 
   catch (error) {
-    console.log(`Error running GPT4 completion: ${error}`);
+    console.log(`Error running GPT3 completion: ${error}`);
     try {
       const baseCompletion3 = await openai.createCompletion({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4",
         prompt: `${basePromptPrefix}${basePromptInputs}`,
         temperature: 0.70,
         max_tokens: 500,
