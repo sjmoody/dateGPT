@@ -85,13 +85,13 @@ const callGenerateEndpoint = async () => {
   .then((data) => {
     // Success
     const { output } = data;
-    if(output && output.text) {
-      console.log(`Output: ${output.text}`)
+    if(output) {
+      console.log(`Output: ${output}`)
       let smsb = `Hi! I'm GPTCupid. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -GPTCupid`;
       let smsDebug = `Request received from ${inputs.phoneNumber}. Response sent to user: \n Hi! I'm GPTCupid. Here are three ideas for dates ${inputs.name1} and ${inputs.name2} could try. \n  ${output.text} \n If you try one of these, let me know how it goes! \n -GPTCupid`;
       callTwilioDebug(smsDebug);
 
-      setApiOutput(output.text)
+      setApiOutput(output)
 
       // callTwilioEndpoint(smsb)
     } // else try other out
