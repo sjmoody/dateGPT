@@ -22,17 +22,12 @@ const generateAction = async (req, res) => {
 
   try {
     const inputs = req.body.inputs;
-
     const name1 = inputs.name1 ? `\nName: ${inputs.name1}` : ``
-
     const personality1 = inputs.personality1 ? `\nPersonality type: ${inputs.personality1}`: ``
     const gender1 = inputs.gender1 ? `\nGender: ${inputs.gender1}` : ``
-
     const name2 = inputs.name1 ? `\nName: ${inputs.name2}` : ``
-
     const personality2 = inputs.personality1 ? `\nPersonality type: ${inputs.personality2}`: ``
     const gender2 = inputs.gender1 ? `\nGender: ${inputs.gender2}`: ``
-
     const city = inputs.city ? `\nCity: ${inputs.city}` : `\nCity: Paris, France`
     const dayOfWeek = inputs.dayOfWeek ? `\nDay of the week: ${inputs.dayOfWeek}` : `\nDay of the week: Friday`
     const dateVibes = inputs.dateVibes ? `\nDate vibes: ${inputs.dateVibes}` : `\nDate vibes: Romantic`
@@ -72,21 +67,28 @@ const generateAction = async (req, res) => {
 
   catch (error) {
     console.log(`Error running GPT4 completion: ${error}`);
-    // try {
-    //   const baseCompletion3 = await openai.createCompletion({
-    //     model: "gpt-4",
-    //     prompt: `${basePromptPrefix}${basePromptInputs}`,
-    //     temperature: 0.70,
-    //     max_tokens: 500,
-    //   });
-    //   const basePromptOutput = baseCompletion3.data.choices.pop();
-    //   res.status(200).json({ output: basePromptOutput });
+    try {
+      const baseCompletion3 = await openai.createCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "user",
+            content: `${basePromptPrefix}${basePromptInputs}`,
+          },
+        ],
+        temperature: 0.70,
+        max_tokens: 500,
 
-    // }
-    // catch (fallbacKError) {
-    //   console.log("Reached final error catch");
-    //   res.status(500).json({ error: fallbacKError.message });
-    // }
+      });
+
+      const basePromptOutput = baseCompletion3.data.choices.pop();
+      res.status(200).json({ output: basePromptOutput });
+
+    }
+    catch (fallbacKError) {
+      console.log("Reached final error catch");
+      res.status(500).json({ error: fallbacKError.message });
+    }
 
 };
 }
