@@ -62,10 +62,6 @@ const callGenerateEndpoint = async () => {
   console.log("Calling OpenAI...")
   console.log(`Expected body for POST call: ${JSON.stringify( { inputs: inputs })}`)
   // Log the inputs object with the values from the form
-
-
-
-
   // console.log(`Inputs:`)
   // console.log(inputs)
 
@@ -98,7 +94,9 @@ const callGenerateEndpoint = async () => {
       setApiOutput(output.text)
 
       // callTwilioEndpoint(smsb)
-
+    } // else try other out
+    else {
+      setApiOutput(data)
     }
   })
   .then(() => {
