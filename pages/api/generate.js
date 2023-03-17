@@ -49,9 +49,11 @@ const generateAction = async (req, res) => {
     const baseCompletion = await openai.createCompletion({
       model: "gpt-4",
       messages: [
-        role: "user",
-        content: `${basePromptPrefix}${basePromptInputs}`,
-      ]
+        {
+          role: "user",
+          content: `${basePromptPrefix}${basePromptInputs}`,
+        },
+      ],
       temperature: 0.70,
       max_tokens: 500,
     });
