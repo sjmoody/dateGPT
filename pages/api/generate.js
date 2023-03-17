@@ -55,7 +55,7 @@ const generateAction = async (req, res) => {
     const baseCompletion = await openai.createCompletion({
       // model: "gpt-4",
       model: "gpt-3.5-turbo",
-      message: [
+      messages: [
         {
           role: "user",
           content: testContent,
@@ -66,12 +66,10 @@ const generateAction = async (req, res) => {
     });
 
     const basePromptOutput = baseCompletion.data.choices.pop();
+    console.log(`Output: ${basePromptOutput}`);
     res.status(200).json({ output: basePromptOutput });
-  } // if that fails try gpt-3.5-turbo
-
-
+  }
   catch (error) {
-
     console.log(`Error running GPT4 completion: ${error}`);
     console.log('API response:', error.response?.data);
     res.status(569).json({ error });
