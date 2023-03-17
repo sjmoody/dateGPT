@@ -46,7 +46,11 @@ const generateAction = async (req, res) => {
 
     console.log(`API: ${basePromptPrefix}${basePromptInputs}`)
 
+
     const testContent = "How can I distinguish between a good and a bad Malbec wine?";
+    console.log(`API: ${testContent}`)
+    // content: `${basePromptPrefix}${basePromptInputs}`,
+
 
     const baseCompletion = await openai.createCompletion({
       // model: "gpt-4",
@@ -55,7 +59,6 @@ const generateAction = async (req, res) => {
         {
           role: "user",
           content: testContent,
-          // content: `${basePromptPrefix}${basePromptInputs}`,
         },
       ],
       temperature: 0.70,
