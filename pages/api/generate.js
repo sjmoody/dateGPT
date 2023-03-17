@@ -70,9 +70,9 @@ const generateAction = async (req, res) => {
       res.status(200).json({ output: basePromptOutput });
 
     }
-
-    console.log("Reached final error catch")
-    res.status(500).json({ error: error.message });
+    catch (fallbacKError) {
+    console.log("Reached final error catch");
+    res.status(500).json({ error: fallbacKError.message });
   }
 
 };
