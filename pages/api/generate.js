@@ -68,7 +68,7 @@ const generateAction = async (req, res) => {
 
   catch (error) {
     console.log(`Error running GPT4 completion: ${error}`);
-    res.status(500).json({ error: error});
+    res.status(569).json({ error});
 
     // try {
     //   const baseCompletion3 = await openai.createCompletion({
