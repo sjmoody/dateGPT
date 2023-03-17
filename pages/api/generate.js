@@ -7,6 +7,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const basePromptPrefix = "Writing in the voice of a dating coach, suggest three dates for a couple, based on their personality types and location. Describe what each person would enjoy about the date, based on their personality types. Use specific details.  \n";
+
 const generateAction = async (req, res) => {
   console.log(`calling generateAction function...`);
 
@@ -71,10 +72,11 @@ const generateAction = async (req, res) => {
 
     }
     catch (fallbacKError) {
-    console.log("Reached final error catch");
-    res.status(500).json({ error: fallbacKError.message });
-  }
+      console.log("Reached final error catch");
+      res.status(500).json({ error: fallbacKError.message });
+    }
 
 };
+}
 
 export default generateAction;
