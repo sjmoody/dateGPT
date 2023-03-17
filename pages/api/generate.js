@@ -48,7 +48,8 @@ const generateAction = async (req, res) => {
 
 
     const baseCompletion = await openai.createCompletion({
-      model: "gpt-4",
+      // model: "gpt-4",
+      model: "gpt-3.5-turbo"
       messages: [
         {
           role: "user",
@@ -56,8 +57,8 @@ const generateAction = async (req, res) => {
         },
       ],
       temperature: 0.70,
-      max_tokens: 500,
-      // stream: true,
+      max_tokens: 600,
+
     });
 
     const basePromptOutput = baseCompletion.data.choices.pop();
@@ -67,28 +68,30 @@ const generateAction = async (req, res) => {
 
   catch (error) {
     console.log(`Error running GPT4 completion: ${error}`);
-    try {
-      const baseCompletion3 = await openai.createCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "user",
-            content: `${basePromptPrefix}${basePromptInputs}`,
-          },
-        ],
-        temperature: 0.70,
-        max_tokens: 500,
+    res.status(500).json({ error: error});
 
-      });
+    // try {
+    //   const baseCompletion3 = await openai.createCompletion({
+    //     // model: "gpt-3.5-turbo",
+    //     messages: [
+    //       {
+    //         role: "user",
+    //         content: `${basePromptPrefix}${basePromptInputs}`,
+    //       },
+    //     ],
+    //     temperature: 0.70,
+    //     max_tokens: 500,
 
-      const basePromptOutput = baseCompletion3.data.choices.pop();
-      res.status(200).json({ output: basePromptOutput });
+    //   });
 
-    }
-    catch (fallbacKError) {
-      console.log("Reached final error catch");
-      res.status(500).json({ error: fallbacKError.message });
-    }
+    //   const basePromptOutput = baseCompletion3.data.choices.pop();
+    //   res.status(200).json({ output: basePromptOutput });
+
+    // }
+    // catch (fallbacKError) {
+    //   console.log("Reached final error catch");
+    //   res.status(500).json({ error: fallbacKError.message });
+    // }
 
 };
 }
