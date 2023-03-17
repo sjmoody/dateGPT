@@ -96,7 +96,7 @@ const callGenerateEndpoint = async () => {
       // callTwilioEndpoint(smsb)
     } // else try other out
     else {
-      setApiOutput(data)
+      console.log(`Unable to figure out the output. Output: ${output}`)
     }
   })
   .then(() => {
