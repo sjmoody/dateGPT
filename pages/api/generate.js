@@ -6,7 +6,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const basePromptPrefix = "Suggest three dates for a couple, based on their personality types and location. Describe what each person would enjoy about the date, based on their personality types. Use specific details.  \n";
+const basePromptPrefix = "Writing in the voice of a dating coach, Suggest three dates for a couple, based on their personality types and location. Describe what each person would enjoy about the date, based on their personality types. Use specific details.  \n";
 
 const generateAction = async (req, res) => {
   console.log(`calling generateAction function...`);
@@ -49,7 +49,7 @@ const generateAction = async (req, res) => {
     const baseCompletion = await openai.createCompletion({
       model: "gpt-4",
       messages: [
-        `role`: `dating coach`,
+        `role`: `user`,
         `content`: `${basePromptPrefix}${basePromptInputs}`,
       ]
       temperature: 0.70,
