@@ -49,7 +49,7 @@ const generateAction = async (req, res) => {
 
     const baseCompletion = await openai.createCompletion({
       // model: "gpt-4",
-      model: "gpt-3.5-turbo"
+      model: "gpt-3.5-turbo",
       messages: [
         {
           role: "user",
