@@ -46,6 +46,7 @@ const generateAction = async (req, res) => {
 
     console.log(`API: ${basePromptPrefix}${basePromptInputs}`)
 
+    const testContent = "How can I distinguish between a good and a bad Malbec wine?";
 
     const baseCompletion = await openai.createCompletion({
       // model: "gpt-4",
@@ -53,12 +54,12 @@ const generateAction = async (req, res) => {
       messages: [
         {
           role: "user",
-          content: `${basePromptPrefix}${basePromptInputs}`,
+          content: testContent,
+          // content: `${basePromptPrefix}${basePromptInputs}`,
         },
       ],
       temperature: 0.70,
       max_tokens: 600,
-
     });
 
     const basePromptOutput = baseCompletion.data.choices.pop();
@@ -68,7 +69,7 @@ const generateAction = async (req, res) => {
 
   catch (error) {
     console.log(`Error running GPT4 completion: ${error}`);
-    res.status(569).json({ error});
+    res.status(569).json({error});
 
     // try {
     //   const baseCompletion3 = await openai.createCompletion({
