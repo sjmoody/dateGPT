@@ -44,6 +44,8 @@ const generateAction = async (req, res) => {
 
     const basePromptInputs = `${personDetails1} ${personDetails2} ${city} ${dayOfWeek} ${dateVibes} \n`
 
+
+    // model: "gpt-3.5-turbo",
     // console.log(`API: ${basePromptPrefix}${basePromptInputs}`)
 
     const baseChatContent = `${basePromptPrefix}${basePromptInputs}`
@@ -52,7 +54,8 @@ const generateAction = async (req, res) => {
     // content: `${basePromptPrefix}${basePromptInputs}`,
 
     const baseChatcompletion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+
+      model: "gpt-4",
       messages: [{role: "user", content: baseChatContent}],
       max_tokens: 600,
       temperature: 0.70,
