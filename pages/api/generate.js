@@ -1,8 +1,8 @@
 import { Configuration, OpenAIApi } from 'openai';
 
-export const config = {
-  runtime: "edge",
-}
+// export const config = {
+//   runtime: "edge",
+// }
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -62,7 +62,7 @@ const generateAction = async (req, res) => {
       ],
       temperature: 0.70,
       max_tokens: 500,
-      stream: true,
+      // stream: true,
     });
 
     const basePromptOutput = baseCompletion.data.choices.pop();
