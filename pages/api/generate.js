@@ -60,7 +60,7 @@ const generateAction = async (req, res) => {
     const baseChatOutput = baseChatcompletion.data.choices[0].message;
     console.log(baseChatOutput);
     // console.log(baseChatcompletion.data.choices[0].message);
-    res.status(200).json({ output: baseChatOutput });
+    res.status(200).json({ output: baseChatOutput.content });
 
 
     // const baseCompletion = await openai.createCompletion({
