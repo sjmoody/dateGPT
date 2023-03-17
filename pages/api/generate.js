@@ -51,23 +51,33 @@ const generateAction = async (req, res) => {
     console.log(`Sending content: ${testContent}`)
     // content: `${basePromptPrefix}${basePromptInputs}`,
 
-
-    const baseCompletion = await openai.createCompletion({
-      // model: "gpt-4",
+    const baseChatcompletion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "user",
-          content: testContent,
-        },
-      ],
-      temperature: 0.70,
-      max_tokens: 600,
+      messages: [{role: "user", content: testContent}],
     });
+    console.log(baseChatcompletion.data.choices[0].message);
+    const baseChatOutput = baseChatcompletion.data.choices[0].message;
+    res.status(200).json({ output: baseChatOutput });
 
-    const basePromptOutput = baseCompletion.data.choices.pop();
-    console.log(`Output: ${basePromptOutput}`);
-    res.status(200).json({ output: basePromptOutput });
+
+    // const baseCompletion = await openai.createCompletion({
+    //   // model: "gpt-4",
+    //   model: "gpt-3.5-turbo",
+    //   messages: [
+    //     {
+    //       role: "user",
+    //       content: testContent,
+    //     },
+    //   ],
+    //   temperature: 0.70,
+    //   max_tokens: 600,
+    // });
+
+    // const basePromptOutput = baseCompletion.data.choices.pop();
+
+
+    // console.log(`Output: ${basePromptOutput}`);
+    // res.status(200).json({ output: basePromptOutput });
   }
   catch (error) {
     console.log(`Error running GPT4 completion: ${error}`);
